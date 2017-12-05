@@ -1,0 +1,15 @@
+class Play extends Scene
+{
+	constructor(title)
+	{
+		super(title);
+	}
+	
+	render(ctx, colour, fontSize)
+	{
+		document.body.style.background = colour;
+		
+		ctx.font = ''+fontSize+'px Arial';
+		ctx.strokeText(this.title, 10, 50);
+	}
+}

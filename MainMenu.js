@@ -1,4 +1,7 @@
 class MainMenu extends Scene
 {
-	constructor
+	constructor(title)
+	{
+		super(title);
+	}
 }

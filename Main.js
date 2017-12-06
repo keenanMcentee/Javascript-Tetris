@@ -11,7 +11,6 @@ var gameNs = {};
 
 function main()
 {
-	
 	const game = new Game();
 	gameNs.game = game;
 	game.initWorld();

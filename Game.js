@@ -25,6 +25,9 @@ class Game
 		gameNs.game.initKeyboard();
 		var canvas = document.getElementById('mycanvas');
 		var ctx = canvas.getContext('2d');
+		
+		var myScene = new Scene("Play");
+		this.mySceneManager.addScene(myScene);
 	}
 	/**
 	 * Initialises the canvas - the drawing surface. The canvas
@@ -102,6 +105,8 @@ class Game
 		var canvas = document.getElementById('mycanvas');
 	    var ctx = canvas.getContext('2d');
 		ctx.clearRect(0,0,canvas.width, canvas.height);
+		
+		this.mySceneManager.draw(ctx)
 	}
 
 }

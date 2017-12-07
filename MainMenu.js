@@ -4,4 +4,9 @@ class MainMenu extends Scene
 	{
 		super(title);
 	}
+	
+	render()
+	{
+	
+	}
 }

@@ -5,7 +5,7 @@
  */
 
 /**
- * Creates an instance of Game and calls initialise on it.
+ * Creates an instance of Game and calls initialize on it.
  */
 var gameNs = {};
 
@@ -15,5 +15,4 @@ function main()
 	gameNs.game = game;
 	game.initWorld();
 	game.update();
-
 }

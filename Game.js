@@ -17,7 +17,7 @@ class Game
 
 	}
 	/**
-	* Function to initialise the componenents of the Game.
+	* Function to initialize the components of the Game.
 	*/
 	initWorld()
 	{
@@ -27,11 +27,15 @@ class Game
 		var canvas = document.getElementById('mycanvas');
 		var ctx = canvas.getContext('2d');
 		this.sceneManager = new SceneManager();
-		var scene = new Scene("Play");
+		
+		var scene = new MainMenu("Play");
+		this.sceneManager.addScene(scene);
+		
+		var scene = new Play("Play");
 		this.sceneManager.addScene(scene);
 	}
 	/**
-	 * Initialises the canvas - the drawing surface. The canvas
+	 * Initializes the canvas - the drawing surface. The canvas
 	 * is added to the document. When a HTML document is loaded into a
 	 * browser, it becomes a document object. This document object is
 	 * the root node of the HTML document and is considered the 'owner' of all other

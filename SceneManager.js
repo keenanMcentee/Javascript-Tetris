@@ -10,6 +10,7 @@ class SceneManager
 		this.scenesDict = {};
 		this.titles = [];
 		this.sceneIndex = -1;
+		
 	}
 	
 	/**

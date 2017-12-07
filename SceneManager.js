@@ -59,11 +59,10 @@ class SceneManager
 	* Render funtion for the current scene
 	* @param {context} ctx canvas.getContext()
 	*/
-	render(ctx)
+	draw(ctx)
 	{
 		ctx.font = ''+12+'px Arial';
 		document.body.style.background = 'white';
-		console.log(this.currentScene.constructor.name);
 		if (this.currentScene.constructor.name == "MainMenu")
 		{
 			this.currentScene.render(ctx, 'pink', 42);

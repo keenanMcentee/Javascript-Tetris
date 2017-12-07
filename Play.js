@@ -1,4 +1,4 @@
-class MainMenu extends Scene
+class Play extends Scene
 {
 	constructor(title)
 	{

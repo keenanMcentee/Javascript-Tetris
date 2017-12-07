@@ -4,4 +4,8 @@ class Play extends Scene
 	{
 		super(title);
 	}
+	update(dt)
+	{
+		
+	}
 }

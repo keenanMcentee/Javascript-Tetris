@@ -21,6 +21,7 @@ class Game
 	*/
 	initWorld()
 	{
+		this.lastUpdate = 0;
 		gameNs.game.initCanvas();
 		gameNs.game.initKeyboard();
 		var canvas = document.getElementById('mycanvas');
@@ -94,6 +95,10 @@ class Game
 	 */
 	update()
 	{
+		var now = Date.now();
+		var dt = now - gameNs.game.lastUpdate;
+		gameNs.game.lastUpdate = now;
+		gameNs.game.sceneManager.update(dt);
 		gameNs.game.draw();
 		window.requestAnimationFrame(gameNs.game.update); 
 	}

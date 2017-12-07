@@ -54,7 +54,13 @@ class SceneManager
 			this.currentScene.start();
 		}		
 	}
-	
+	update(dt)
+	{
+		if (this.currentScene.constructor.name == "Play")
+		{
+			this.currentScene.update(dt);
+		}
+	}
 	/**
 	* Render funtion for the current scene
 	* @param {context} ctx canvas.getContext()

@@ -11,8 +11,5 @@ class Scene
 		return this.title;
 	}
 	
-	render(ctx)
-	{
-		ctx.strokeText(this.title, 10, 50);
-	}
+
 }

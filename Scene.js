@@ -10,6 +10,13 @@ class Scene
 	{
 		return this.title;
 	}
-	
+	stop()
+	{
+		
+	}
+	start()
+	{
+		
+	}
 
 }

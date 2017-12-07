@@ -28,11 +28,13 @@ class Game
 		var ctx = canvas.getContext('2d');
 		this.sceneManager = new SceneManager();
 		
-		var scene = new MainMenu("Play");
+		var scene = new MainMenu("MainMenu");
 		this.sceneManager.addScene(scene);
 		
 		var scene = new Play("Play");
 		this.sceneManager.addScene(scene);
+		
+		this.sceneManager.goToScene("Play");
 	}
 	/**
 	 * Initializes the canvas - the drawing surface. The canvas

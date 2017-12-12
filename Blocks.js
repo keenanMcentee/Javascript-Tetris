@@ -2,31 +2,33 @@ class Blocks
 {
 	constructor()
 	{
+		this.score = 0;
+		this.matrix = null;
 		this.I = [ [0,1,0,0],
 			[0,1,0,0],
 			[0,1,0,0],
 			[0,1,0,0], ];
 			
-		this.O = [[1,1],
-			 [1,1] ,];
+		this.O = [[2,2],
+			 [2,2] ,];
 			
 		this.J =[
-			[0,1],
-			[0,1],
-			[1,1], ];
+			[0,3],
+			[0,3],
+			[3,3], ];
 		
-		this.L =[[1,0],
-			[1,0],
-			[1,1], ];
+		this.L =[[4,0],
+			[4,0],
+			[4,4], ];
 			
-		this.S =[[1,1,0],
-			[0,1,1],];
+		this.S =[[5,5,0],
+			[0,5,5],];
 			
-		this.Z =[[1,1,0],
-			[0,1,1],];
+		this.Z =[[6,6,0],
+			[0,6,6],];
 		this.T = [	[0,0,0],
-					[1,1,1],
-					[0,1,0] ];
+					[7,7,7],
+					[0,7,0] ];
 					
 					
 		
@@ -70,20 +72,21 @@ class Blocks
 	
 	
 	
-	draw(ctx, blockSize)
+	draw(ctx, blockSize, colors)
 	{
-		this.drawMatrix(ctx, this.matrix, this.offset, blockSize);
+		
+		this.drawMatrix(ctx, this.matrix, this.offset, blockSize, colors);
 	}
 	
 	
-	drawMatrix(ctx, matrix, offset, blockSize){
+	drawMatrix(ctx, matrix, offset, blockSize, colors){
 		matrix.forEach((row,y) => 
 		{
 			row.forEach((value,x) => 
 			{
 				if(value !== 0)
 				{
-					ctx.fillStyle = 'red';
+					ctx.fillStyle = colors[value];
 					ctx.fillRect(x * blockSize.width + (offset.x * blockSize.width),
 								y * blockSize.height + (offset.y * blockSize.height),
 								blockSize.width,

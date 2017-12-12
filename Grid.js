@@ -6,6 +6,7 @@ class Grid
 		this.rows = 10;
 		this.columns = 15;
 		this.matrix = null;
+		this.multiplyer = 1;
 	}
 	createMatrix(w,h)
 	{
@@ -34,6 +35,25 @@ class Grid
 		})
 		
 	}
+	sweep(score)
+	{
+		
+		outer: for (let y = this.matrix.length - 1; y > 0; --y)
+		{
+			for(let x = 0; x < this.matrix[y].length; ++x)
+			{
+				if (this.matrix[y][x] === 0)
+				{
+					continue outer;
+				}
+			}
+			const row = this.matrix.splice(y,1)[0].fill(0);
+			this.matrix.unshift(row);
+			++y;
+			score += 100 * this.multiplyer;
+			this.multiplyer += 1;
+		}
+	}
 	collide(player)
 	{
 		const [m,o] = [player.matrix, player.offset];
@@ -53,7 +73,7 @@ class Grid
 		}
 		return false;
 	}
-	draw(ctx, blockSize)
+	draw(ctx, blockSize, colors)
 	{
 		
 		for(var i = 0; i < this.columns; i++)
@@ -64,18 +84,18 @@ class Grid
 				ctx.strokeRect(blockSize.width * j, blockSize.height * i, blockSize.width,blockSize.height);
 			}
 		}
-		this.drawMatrix(ctx, this.matrix, {x:0 , y:0}, blockSize);
+		this.drawMatrix(ctx, this.matrix, {x:0 , y:0}, blockSize, colors);
 	}
 	
 	
-	drawMatrix(ctx, matrix, offset, blockSize){
+	drawMatrix(ctx, matrix, offset, blockSize, colors){
 		matrix.forEach((row,y) => 
 		{
 			row.forEach((value,x) => 
 			{
 				if(value !== 0)
 				{
-					ctx.fillStyle = 'red';
+					ctx.fillStyle = colors[value];
 					ctx.fillRect(x * blockSize.width + (offset.x * blockSize.width),
 								y * blockSize.height + (offset.y * blockSize.height),
 								blockSize.width,

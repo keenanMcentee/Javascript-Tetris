@@ -21,7 +21,15 @@ class Play extends Scene
 			console.log("NoTouch");
 			document.addEventListener("keydown", keyDownHandler.bind(null, this));
 		}
-		
+		this.colors = [
+		null,
+		'red',
+		'blue',
+		'violet',
+		'green',
+		'purple',
+		'orange',
+		'pink']
 	}
 	update(dt)
 	{
@@ -37,8 +45,8 @@ class Play extends Scene
 	{
 		
 		this.blockSize = {width: ((ctx.canvas.width - 200) / this.grid.rows) , height: ((ctx.canvas.height - 200) / this.grid.columns)}
-		this.player.draw(ctx, this.blockSize);
-		this.grid.draw(ctx, this.blockSize);
+		this.player.draw(ctx, this.blockSize, this.colors);
+		this.grid.draw(ctx, this.blockSize, this.colors);
 	}
 	blockDrop()
 	{
@@ -48,7 +56,9 @@ class Play extends Scene
 			this.player.offset.y--;
 			this.grid.merge(this.player);
 			this.playerReset();
+			this.grid.sweep(this.player.score);
 		}
+		this.updateScore();
 	}
 	playerReset()
 	{
@@ -56,6 +66,10 @@ class Play extends Scene
 		this.player.createPiece(pieces[pieces.length * Math.random() | 0]);
 		this.player.offset.y = 0;
 		this.player.offset.x = (this.grid.matrix[0].length / 2);
+		if (this.grid.collide(this.player))
+		{
+			this.grid.matrix.forEach(row => row.fill(0));
+		}
 	}
 	playerMove(dir)
 	{
@@ -64,6 +78,10 @@ class Play extends Scene
 		{
 			this.player.offset.x -= dir;
 		}
+	}
+	updateScore()
+	{
+		document.getElementById('score').innerText = this.player.score;
 	}
 	
 	rotate(matrix){
@@ -77,7 +95,10 @@ class Play extends Scene
 		matrix.forEach(row=> row.reverse());
 	}
 	
-	
+	onTouchStart(program, e) {                                         
+		program.move.x = e.touches[0].clientX;                                      
+		program.move.y = e.touches[0].clientY;                                      
+	}; 
 	
 	
 	onTouchMove(program, e)

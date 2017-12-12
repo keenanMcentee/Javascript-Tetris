@@ -2,12 +2,11 @@ class Blocks
 {
 	constructor()
 	{
-		this.J = [ 	[0,0,0,1],
-					[0,0,0,1],
-					[0,0,0,1],
-					[0,0,0,1] ];
+		this.matrix = [
+					[1,1,1],
+					[0,1,0] ];
 					
-		this.offset = {x:1, y: 1};
+		this.offset = {x:0, y: 0};
 	}		
 	
 	
@@ -16,7 +15,7 @@ class Blocks
 	
 	draw(ctx, blockSize)
 	{
-		this.drawMatrix(ctx, this.J, this.offset, blockSize);
+		this.drawMatrix(ctx, this.matrix, this.offset, blockSize);
 	}
 	
 	

@@ -1,8 +1,8 @@
 class Play extends Scene
 {
-	constructor(title)
+	constructor()
 	{
-		super(title);
+		super("Play");
 		this.play = this;
 		this.grid = new Grid();
 		//Blocks ID
@@ -10,8 +10,7 @@ class Play extends Scene
 		this.jBlock = new Blocks();
 		this.timeSinceLastFrame = 0;
 		this.move = {x: null, y: null};
-		document.addEventListener("touchstart", this.onTouchStart.bind(null, this));
-		document.addEventListener('touchmove', this.onTouchMove.bind(null, this));
+		
 	}
 	update(dt)
 	{
@@ -31,11 +30,7 @@ class Play extends Scene
 	}
 
 	
-	onTouchStart(program, e)
-	{
-		program.move.x = e.touches[0].clientX;
-		program.move.y = e.touches[0].clientY;
-	}
+	
 	
 	onTouchMove(program, e)
 	{

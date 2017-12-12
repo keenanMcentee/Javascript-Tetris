@@ -10,7 +10,6 @@ class SceneManager
 		this.scenesDict = {};
 		this.titles = [];
 		this.sceneIndex = -1;
-		
 	}
 	
 	/**
@@ -35,11 +34,6 @@ class SceneManager
 	*/
 	goToScene(title)
 	{
-		if(this.currentScene !== null)
-		{
-			this.currentScene.stop();
-		}
-		
 		for (var i = 0; i < this.titles.length;i++)
 		{
 			if(this.titles[i] === title)
@@ -48,22 +42,17 @@ class SceneManager
 			}
 		}
 		
-		this.currentScene = this.scenesDict[this.titles[this.index]];
-		
-		if(this.currentScene !== null)
-		{
-			this.currentScene.start();
-		}		
+		this.currentScene = this.scenesDict[this.titles[this.index]];	
 	}
 	update(dt)
 	{
 		if (this.currentScene.constructor.name == "Play")
 		{
-			this.currentScene.update(dt);
+			this.currentScene.update(dt, this);
 		}
 	}
 	/**
-	* Render funtion for the current scene
+	* Render function for the current scene
 	* @param {context} ctx canvas.getContext()
 	*/
 	draw(ctx)

@@ -14,6 +14,7 @@ class Grid
 			while (h--)
 			{
 				matrix.push(new Array(w).fill(0));
+				
 			}
 			this.matrix = matrix;
 		}
@@ -35,23 +36,20 @@ class Grid
 	}
 	collide(player)
 	{
-		const [m, o] = [player.matrix, player.offset];
-		for (let y = 0; y < m.length; ++y)
+		const [m,o] = [player.matrix, player.offset];
+		for (var y = 0; y < m.length; ++y)
 		{
-			for (let x = 0; x < m[y].length; ++x)
+			for (var x = 0; x < m[y].length; ++x)
 			{
-				
-				if ((m[y][x] !== 0 && 
-					this.matrix[y + o.y] &&
-					this.matrix[y + o.y][x + o.x]) !== 0)
-					{
-						if (this.matrix[y + o.y][x + o.x] !== 0)
-						{
-							console.log("true");
-							return true;
-						}
-					}
+				if ((m[y][x] !== 0 && (this.matrix[y + o.y] && this.matrix[y + o.y][x+ o.x] !== 0)))
+				{
+					return true;
+				}
 			}
+		}
+		if ((o.y + m.length) > this.matrix.length)
+		{			
+			return true;
 		}
 		return false;
 	}
@@ -66,6 +64,24 @@ class Grid
 				ctx.strokeRect(blockSize.width * j, blockSize.height * i, blockSize.width,blockSize.height);
 			}
 		}
-		
+		this.drawMatrix(ctx, this.matrix, {x:0 , y:0}, blockSize);
+	}
+	
+	
+	drawMatrix(ctx, matrix, offset, blockSize){
+		matrix.forEach((row,y) => 
+		{
+			row.forEach((value,x) => 
+			{
+				if(value !== 0)
+				{
+					ctx.fillStyle = 'red';
+					ctx.fillRect(x * blockSize.width + (offset.x * blockSize.width),
+								y * blockSize.height + (offset.y * blockSize.height),
+								blockSize.width,
+								blockSize.height);
+				}
+			});
+		});
 	}
 }

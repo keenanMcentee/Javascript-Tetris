@@ -7,6 +7,7 @@ class Play extends Scene
 		this.grid = new Grid();
 		this.gridMatrix = this.grid.createMatrix(this.grid.rows,this.grid.columns);
 		this.player = new Blocks();
+		this.playerReset();
 		this.timeSinceLastFrame = 0;
 		this.move = {x: null, y: null};
 		if (is_touch_device)
@@ -44,13 +45,38 @@ class Play extends Scene
 		this.player.offset.y += 1;
 		if (this.grid.collide(this.player))
 		{
-			//console.log("collided");
-			//this.player.offset.y--;
-			//this.grid.merge(this.player);
-			//this.player.offset.y = 0;
-			//console.table(this.grid.matrix);
+			this.player.offset.y--;
+			this.grid.merge(this.player);
+			this.playerReset();
 		}
 	}
+	playerReset()
+	{
+		const pieces = "ILJOTSZ";
+		this.player.createPiece(pieces[pieces.length * Math.random() | 0]);
+		this.player.offset.y = 0;
+		this.player.offset.x = (this.grid.matrix[0].length / 2);
+	}
+	playerMove(dir)
+	{
+		this.player.offset.x += dir;
+		if (this.grid.collide(this.player))
+		{
+			this.player.offset.x -= dir;
+		}
+	}
+	
+	rotate(matrix){
+		for (let y = 0; y < matrix.length; y++)
+		{
+			for (let x = 0; x < y; x++)
+			{
+				[matrix[x][y], matrix[y][x],] = [matrix[y][x], matrix[x][y],] ;
+			}
+		}
+		matrix.forEach(row=> row.reverse());
+	}
+	
 	
 	onTouchStart(program, e)
 	{
@@ -75,12 +101,12 @@ class Play extends Scene
 				console.log("Left swipe");
 				if (program.player.offset.x > 0)
 				{
-					program.player.offset.x--;
+					program.playerMove(-1);
 				}
 			} else if (xDiff < 3){
 				if (program.player.offset.x < program.grid.rows)
 				{
-					program.player.offset.x++;
+					program.playerMove(+1);
 				}
 				console.log("Right swipe");
 			}
@@ -90,10 +116,12 @@ class Play extends Scene
 		{
 			if (yDiff < 5){
 				console.log("Swipe down");
+				program.player.offset.y++;
 			} 
 			else
 			{
-				console.log("Touch");
+				console.log("Rotate / TAP");
+				program.rotate(program.player.matrix);
 			}
 		}
 		

@@ -10,13 +10,10 @@ class Scene
 	{
 		return this.title;
 	}
-	stop()
+	
+	render(ctx)
 	{
-		
-	}
-	start()
-	{
-		
+		ctx.strokeText(this.title, 360, 50);
 	}
 
 }

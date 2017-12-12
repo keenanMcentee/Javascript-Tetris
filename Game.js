@@ -28,13 +28,13 @@ class Game
 		var ctx = canvas.getContext('2d');
 		this.sceneManager = new SceneManager();
 		
-		var scene = new MainMenu("MainMenu");
+		var scene = new MainMenu(this.sceneManager);
 		this.sceneManager.addScene(scene);
 		
-		var scene = new Play("Play");
+		var scene = new Play();
 		this.sceneManager.addScene(scene);
 		
-		this.sceneManager.goToScene("Play");
+		this.sceneManager.goToScene("MainMenu");
 	}
 	/**
 	 * Initializes the canvas - the drawing surface. The canvas
@@ -50,7 +50,7 @@ class Game
 		// Assign the canvas an id so we can reference it elsewhere.
 		canvas.id = 'mycanvas';
 		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
+		canvas.height = window.innerHeight - 100;
 		// We want this to be a 2D canvas.
 		var ctx = canvas.getContext("2d");
 		// Adds the canvas element to the document.
@@ -82,7 +82,6 @@ class Game
 				e.preventDefault();
 			}
 		}, false);
-
 	}
 	/**
 	 * Helper function that returns a string of the form 'rgb(r,g,b)' where
@@ -119,5 +118,5 @@ class Game
 		
 		this.sceneManager.draw(ctx)
 	}
-
+	
 }

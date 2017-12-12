@@ -1,8 +1,8 @@
 class Play extends Scene
 {
-	constructor(title)
+	constructor()
 	{
-		super(title);
+		super("Play");
 		this.play = this;
 		this.grid = new Grid();
 		this.gridMatrix = this.grid.createMatrix(this.grid.rows,this.grid.columns);
@@ -78,11 +78,7 @@ class Play extends Scene
 	}
 	
 	
-	onTouchStart(program, e)
-	{
-		program.move.x = e.touches[0].clientX;
-		program.move.y = e.touches[0].clientY;
-	}
+	
 	
 	onTouchMove(program, e)
 	{

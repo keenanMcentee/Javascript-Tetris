@@ -13,9 +13,24 @@ class SceneManager
 		
 		this.menuImage = new Image();
 		this.menuImage.src = "MainMenuBackground.jpg";
+		
 		this.titleImage = new Image();
 		this.titleImage.src = "TetrisTitle.jpg";
-		this.menuImage.height = 500;
+		
+		this.iBlockImage = new Image();
+		this.iBlockImage.src = "iBlock.jpg";
+		
+		this.iBlockRotated = new Image();
+		this.iBlockRotated.src = "iBlockRotated.jpg";
+		
+		this.arrowLeft = new Image();
+		this.arrowLeft.src = "ArrowLeft.png";
+		
+		this.arrowRight = new Image();
+		this.arrowRight.src = "ArrowRight.png";
+		
+		this.arrowDown = new Image();
+		this.arrowDown.src = "ArrowDown.png";
 	}
 	/**
 	* Function that adds the title of the passed scene to a list of scene titles
@@ -49,6 +64,11 @@ class SceneManager
 		
 		this.currentScene = this.scenesDict[this.titles[this.index]];	
 	}
+	
+	/**
+	* Function that updates the play state as it is the only state that requires a clock
+	* @param {float} dt delta time 
+	*/
 	update(dt)
 	{
 		if (this.currentScene.constructor.name == "Play")
@@ -62,7 +82,7 @@ class SceneManager
 	*/
 	draw(ctx)
 	{
-		ctx.font = ''+12+'px Arial';
+		ctx.font = ''+25+'px Arial';
 		document.body.style.background = 'white';
 
 		if(this.currentScene.title === "MainMenu")
@@ -70,6 +90,24 @@ class SceneManager
 			ctx.drawImage(this.titleImage,0,0);
 			ctx.drawImage(this.menuImage,0,500);
 		}
+		
+		if(this.currentScene.title === "Help")
+		{
+			ctx.strokeText("Swipe up to rotate", 30, 100);
+			ctx.drawImage(this.iBlockImage, 30, 120);
+			ctx.drawImage(this.iBlockRotated, 250, 120);
+			
+			ctx.strokeText("Swipe left or right to move block", 30, 500);
+			ctx.drawImage(this.iBlockImage, 275, 520);
+			ctx.drawImage(this.arrowLeft, 30, 620);
+			ctx.drawImage(this.arrowRight, 500, 620);
+			
+			
+			ctx.strokeText("Swipe down to move down a line", 30, 900);
+			ctx.drawImage(this.iBlockImage, 275, 920);
+			ctx.drawImage(this.arrowDown, 500, 950);
+		}
+		
 		
 		this.currentScene.render(ctx, 'pink', 42);
 	}

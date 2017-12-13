@@ -13,7 +13,7 @@ class Scene
 	
 	render(ctx)
 	{
-		//ctx.strokeText(this.title, 360, 50);
+		
 	}
 
 }

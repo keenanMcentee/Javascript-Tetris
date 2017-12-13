@@ -113,7 +113,14 @@ class SceneManager
 		
 		if(this.currentScene.title === "End")
 		{
+			//document.getElementById('score').innerText = this.player.score;
+			var finalScore = document.getElementById('score').innerText;
+			
+			ctx.font = ''+50+'px Arial';
 			ctx.drawImage(this.gameOver, 0,0);
+			ctx.fillStyle = "White";
+			ctx.fillText("Score: " + finalScore, 400, 1250 );
+			
 		}
 		
 		this.currentScene.render(ctx, 'pink', 42);

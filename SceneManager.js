@@ -10,8 +10,12 @@ class SceneManager
 		this.scenesDict = {};
 		this.titles = [];
 		this.sceneIndex = -1;
+		this.menuImage = new Image();
+		this.menuImage.src = "MainMenuBackground.jpg";
+		this.titleImage = new Image();
+		this.titleImage.src = "TetrisTitle.jpg";
+		this.menuImage.height = 500;
 	}
-	
 	/**
 	* Function that adds the title of the passed scene to a list of scene titles
 	* @param {Scene} scene 
@@ -59,14 +63,14 @@ class SceneManager
 	{
 		ctx.font = ''+12+'px Arial';
 		document.body.style.background = 'white';
-		if (this.currentScene.constructor.name == "MainMenu")
+
+		if(this.currentScene.title === "MainMenu")
 		{
-			this.currentScene.render(ctx, 'pink', 42);
+			ctx.drawImage(this.titleImage,0,0);
+			ctx.drawImage(this.menuImage,0,500);
 		}
-		else
-		{
-			this.currentScene.render(ctx);
-		}
+		
+		this.currentScene.render(ctx, 'pink', 42);
 	}
 	
 }

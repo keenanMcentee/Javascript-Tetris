@@ -20,10 +20,6 @@ class MainMenu extends Scene
 		document.body.appendChild(div);
 	}
 	
-	
-	
-	
-	
 	onTouchStart(program, e)
 	{
 		var currentElement = e.target;
@@ -31,24 +27,3 @@ class MainMenu extends Scene
 		program.sceneManager.goToScene(parentDiv.sceneName);
 	}
 }
-
-
-
-// var currentElement = e.target;
-	// var parentDiv = currentElement.parentNode;
-	// console.log("Div id = " + parentDiv.id);
-	// if (!parentDiv.soundManager.playing && !parentDiv.soundManager.loop)
-	// {
-		// parentDiv.soundManager.playSound(parentDiv.id, false, volume);
-	// }
-	// else if (parentDiv.soundManager.playing && !parentDiv.soundManager.loop)
-	// {
-		// parentDiv.soundManager.setLoop(true);
-		// parentDiv.classList.add('buttonBorder');
-	// }
-	// else
-	// {
-		// parentDiv.soundManager.stop();
-		// parentDiv.classList.remove('buttonBorder');
-	// }
-	// console.log("Image URL = " + currentElement.src);	

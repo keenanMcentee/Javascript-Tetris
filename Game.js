@@ -34,6 +34,9 @@ class Game
 		var scene = new Play();
 		this.sceneManager.addScene(scene);
 		
+		var scene = new Help();
+		this.sceneManager.addScene(scene);
+		
 		this.sceneManager.goToScene("MainMenu");
 	}
 	/**

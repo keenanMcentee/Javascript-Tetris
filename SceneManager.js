@@ -10,6 +10,7 @@ class SceneManager
 		this.scenesDict = {};
 		this.titles = [];
 		this.sceneIndex = -1;
+		
 		this.menuImage = new Image();
 		this.menuImage.src = "MainMenuBackground.jpg";
 		this.titleImage = new Image();

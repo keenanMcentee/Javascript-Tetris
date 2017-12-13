@@ -31,6 +31,9 @@ class SceneManager
 		
 		this.arrowDown = new Image();
 		this.arrowDown.src = "ArrowDown.png";
+		
+		this.gameOver = new Image();
+		this.gameOver.src = "GameOver.jpg";
 	}
 	/**
 	* Function that adds the title of the passed scene to a list of scene titles
@@ -108,8 +111,11 @@ class SceneManager
 			ctx.drawImage(this.arrowDown, 500, 950);
 		}
 		
+		if(this.currentScene.title === "End")
+		{
+			ctx.drawImage(this.gameOver, 0,0);
+		}
 		
 		this.currentScene.render(ctx, 'pink', 42);
 	}
-	
 }

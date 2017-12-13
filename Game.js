@@ -31,10 +31,13 @@ class Game
 		var scene = new MainMenu(this.sceneManager);
 		this.sceneManager.addScene(scene);
 		
-		var scene = new Play();
+		var scene = new Play(this.sceneManager);
 		this.sceneManager.addScene(scene);
 		
 		var scene = new Help();
+		this.sceneManager.addScene(scene);
+		
+		var scene = new End();
 		this.sceneManager.addScene(scene);
 		
 		this.sceneManager.goToScene("MainMenu");

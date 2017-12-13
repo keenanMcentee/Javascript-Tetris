@@ -1,8 +1,9 @@
 class Play extends Scene
 {
-	constructor()
+	constructor(sceneManager)
 	{
 		super("Play");
+		this.sceneManager = sceneManager;
 		this.play = this;
 		this.grid = new Grid();
 		this.gridMatrix = this.grid.createMatrix(this.grid.rows,this.grid.columns);
@@ -69,7 +70,11 @@ class Play extends Scene
 		if (this.grid.collide(this.player))
 		{
 			this.grid.matrix.forEach(row => row.fill(0));
+			this.sceneManager.goToScene("End");
 		}
+		
+		
+		
 	}
 	playerMove(dir)
 	{

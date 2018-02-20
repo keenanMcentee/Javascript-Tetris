@@ -72,11 +72,11 @@ class SceneManager
 	* Function that updates the play state as it is the only state that requires a clock
 	* @param {float} dt delta time 
 	*/
-	update(dt)
+	update(dt,ws)
 	{
-		if (this.currentScene.constructor.name == "Play")
+		if (this.currentScene.constructor.name == "Play" || this.currentScene.constructor.name == "multiplayerWait" || this.currentScene.constructor.name == "multiplayerPlay")
 		{
-			this.currentScene.update(dt, this);
+			this.currentScene.update(dt, this, ws);
 		}
 	}
 	/**

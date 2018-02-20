@@ -7,6 +7,7 @@ class MainMenu extends Scene
 		this.sceneManager = sceneManager;
 		this.createButton("Help", "Help", this, "three", this.soundManager);
 		this.createButton("Play", "Play", this, "two", this.soundManager);
+		this.createButton("MultiPlayer", "multiplayerWait",this,"four",this.soundManager);
 		this.createButton("MainMenu", "MainMenu", this, "one", this.soundManager);
 	}
 	

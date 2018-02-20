@@ -15,7 +15,7 @@ class Game
 	constructor()
 	{
 		
-		
+		this.ws = new WebSocket("ws://localhost:8080/wstest");
 		
 	}
 	/**
@@ -35,6 +35,9 @@ class Game
 		
 		var scene = new Play(this.sceneManager);
 		this.sceneManager.addScene(scene);
+		
+		var scene = new multiplayerPlay(this.sceneManager);
+		this.sceneManager.addScene(scene);		
 		
 		var scene = new Help();
 		this.sceneManager.addScene(scene);
@@ -113,7 +116,7 @@ class Game
 		var now = Date.now();
 		var dt = now - gameNs.game.lastUpdate;
 		gameNs.game.lastUpdate = now;
-		gameNs.game.sceneManager.update(dt);
+		gameNs.game.sceneManager.update(dt, gameNs.game.ws);
 		gameNs.game.draw();
 		window.requestAnimationFrame(gameNs.game.update); 
 	}

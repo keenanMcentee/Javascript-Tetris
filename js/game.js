@@ -49,8 +49,6 @@ class Game
 		this.sceneManager.addScene(scene);
 		
 		this.sceneManager.goToScene("MainMenu");
-		
-		
 	}
 	/**
 	 * Initializes the canvas - the drawing surface. The canvas

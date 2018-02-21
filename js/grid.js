@@ -9,6 +9,8 @@ class Grid
 		this.multiplyer = 1;
 		this.score = 0;
 		this.point = 0;
+		this.pArraySize = 100;
+		this.pArray = [];
 	}
 	createMatrix(w,h)
 	{
@@ -47,8 +49,19 @@ class Grid
 				{
 					continue outer;
 				}
+				
 			}
 			const row = this.matrix.splice(y,1)[0].fill(0);
+			for(var i = 0; i < this.pArraySize; i++)
+				{
+					for (let x = 0; x < this.matrix[y].length; x++)
+					{
+						this.p = new Particle();
+						this.p.initialise(x, y , Math.floor(Math.random() * 10) - 5, Math.floor(Math.random() * 10) - 5);
+						this.pArray.push(this.p);
+					}
+					
+				}
 			this.matrix.unshift(row);
 			++y;
 			this.score += 100 * this.multiplyer;
@@ -87,6 +100,17 @@ class Grid
 				ctx.strokeRect(blockSize.width * j, blockSize.height * i, blockSize.width,blockSize.height);
 			}
 		}
+		
+		for(var i = 0; i < this.pArray.length; i++)
+		{
+			this.pArray[i].update();
+			this.pArray[i].draw(ctx,blockSize.width, blockSize.height );
+			if (this.pArray[i].isDead())
+			{
+				this.pArray.splice(i, 1);
+			}
+		}
+		
 		this.drawMatrix(ctx, this.matrix, {x:0 , y:0}, blockSize, colors);
 	}
 	

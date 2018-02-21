@@ -37,7 +37,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				#if the key is not the socket the message came in on - what does that mean?
 				if(key == self.get_player_address()):
 					self.write_message(self.format_message("success" , str(game_state)))
-		
+			if len(session.keys()) == 2:
+				start()
 		else:
 			for key, value in session.items():
 				#if the key is not the socket the message came in on - what does that mean?
@@ -57,6 +58,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 		message = {'type' : type , 'data' : data}
 		return json.dumps(message)
 	
+	def start(self):
+		self.write_message(self.format_message("start", ' '))
 app= tornado.web.Application([
         	#map the handler to the URI named "test"
 			(r'/wstest', WSHandler),

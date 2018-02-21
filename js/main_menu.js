@@ -1,17 +1,17 @@
 class MainMenu extends Scene
 {
-	constructor(sceneManager)
+	constructor(sceneManager, ws)
 	{
 		super("MainMenu");
 		this.soundManager = new SoundManager();
 		this.sceneManager = sceneManager;
-		this.createButton("Help", "Help", this, "three", this.soundManager);
-		this.createButton("Play", "Play", this, "two", this.soundManager);
-		this.createButton("MultiPlayer", "multiplayerWait",this,"four",this.soundManager);
-		this.createButton("MainMenu", "MainMenu", this, "one", this.soundManager);
+		this.createButton("Help", "Help", this, "three", this.soundManager, ws);
+		this.createButton("Play", "Play", this, "two", this.soundManager, ws);
+		this.createButton("MultiPlayer", "multiplayerWait",this,"four",this.soundManager,ws);
+		this.createButton("MainMenu", "MainMenu", this, "one", this.soundManager, ws);
 	}
 	
-	createButton(name, scene, program, divNum, sm)
+	createButton(name, scene, program, divNum, sm, ws)
 	{
 		var div = document.createElement("div");
 		div.id = name;
@@ -22,6 +22,7 @@ class MainMenu extends Scene
 		div.sm = sm;
 		div.sm.loadSoundFile("bg" , "bg.mp3");
 		div.sm.init();
+		div.ws = ws;
 		div.classList.add('btn_' + divNum);
 		document.body.appendChild(div);
 	}
@@ -35,9 +36,18 @@ class MainMenu extends Scene
 		{
 			program.sceneManager.scenesDict["Play"].grid.score = 0;
 		}
+		if (parentDiv.sceneName == "multiplayerWait")
+		{
+			console.log("client joining");
+			var message={}
+			message.type = "join"
+			var to_json = JSON.stringify(message);
+			gameNs.game.ws.send(to_json);
+		}
 		if (parentDiv.sm.playing == false)
 		{
 			parentDiv.sm.playSound("bg",true, 0.2);
 		}
 	}
+
 }

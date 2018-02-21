@@ -9,7 +9,7 @@ class multiplayerWait extends Scene
 	}
 	render(ctx)
 	{
-		
+		console.log("WE ARE WAITING!");
 	}
 	
 }

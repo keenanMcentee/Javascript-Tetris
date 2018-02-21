@@ -16,7 +16,7 @@ class Game
 	{
 		
 		this.ws = new WebSocket("ws://localhost:8080/wstest");
-		
+		this.ws.addEventListener('message', this.handleMessage);
 	}
 	/**
 	* Function to initialize the components of the Game.
@@ -30,14 +30,17 @@ class Game
 		var ctx = canvas.getContext('2d');
 		this.sceneManager = new SceneManager();
 		
-		var scene = new MainMenu(this.sceneManager);
+		var scene = new MainMenu(this.sceneManager, gameNs.game.ws);
 		this.sceneManager.addScene(scene);
 		
 		var scene = new Play(this.sceneManager);
 		this.sceneManager.addScene(scene);
 		
 		var scene = new multiplayerPlay(this.sceneManager);
-		this.sceneManager.addScene(scene);		
+		this.sceneManager.addScene(scene);	
+
+		var scene = new multiplayerWait(this.sceneManager);
+		this.sceneManager.addScene(scene);				
 		
 		var scene = new Help();
 		this.sceneManager.addScene(scene);
@@ -131,5 +134,10 @@ class Game
 		
 		this.sceneManager.draw(ctx, canvas)
 	}
-
+	handleMessage(evt)
+	{
+		var message = JSON.parse(evt.data);
+		console.log(message);
+		
+	}
 }

@@ -31,7 +31,7 @@ class Play extends Scene
 	{
 		
 		this.timeSinceLastFrame += dt/1000;
-		if (this.timeSinceLastFrame > 1.5)
+		if (this.timeSinceLastFrame > 2.0 - (this.grid.score / 1000.0))
 		{
 			this.timeSinceLastFrame = 0;
 			this.blockDrop();
